@@ -1,0 +1,30 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega328"</DEVICE>
+ <WORKING_DIR>c:\users\owner\Documents\Atmel Studio\7.0\DA2_task1_asm\DA2_task1_asm\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>G:/Atmel Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc</DIR>
+  <DIR>G:\Atmel Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>c:\users\owner\Documents\Atmel Studio\7.0\DA2_task1_asm\DA2_task1_asm\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>G:/Atmel Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>c:\users\owner\Documents\Atmel Studio\7.0\DA2_task1_asm\DA2_task1_asm\Debug\DA2_task1_asm.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>DA2_task1_asm.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>DA2_task1_asm.map</FILE>
+  <FILE>DA2_task1_asm.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <LOOP><FILE>c:\users\owner\Documents\Atmel Studio\7.0\DA2_task1_asm\DA2_task1_asm\main.asm</FILE><LINE>21</LINE></LOOP>
+  <myDelay><FILE>c:\users\owner\Documents\Atmel Studio\7.0\DA2_task1_asm\DA2_task1_asm\main.asm</FILE><LINE>27</LINE></myDelay>
+  <L1><FILE>c:\users\owner\Documents\Atmel Studio\7.0\DA2_task1_asm\DA2_task1_asm\main.asm</FILE><LINE>29</LINE></L1>
+  <L2><FILE>c:\users\owner\Documents\Atmel Studio\7.0\DA2_task1_asm\DA2_task1_asm\main.asm</FILE><LINE>31</LINE></L2>
+ </LABELS>
+</ASSEMBLER_INFO>
