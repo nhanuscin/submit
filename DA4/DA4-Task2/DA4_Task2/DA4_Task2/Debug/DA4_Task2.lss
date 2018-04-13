@@ -1,0 +1,244 @@
+
+DA4_Task2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000170  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000011c  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000170  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001a0  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  000001dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000697  00000000  00000000  000001fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000607  00000000  00000000  00000893  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000294  00000000  00000000  00000e9a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  00001130  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000352  00000000  00000000  00001154  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000018  00000000  00000000  000014a6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  000014be  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 40 00 	call	0x80	; 0x80 <main>
+  78:	0c 94 8c 00 	jmp	0x118	; 0x118 <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <main>:
+#define F_CPU 8000000UL
+
+int main(void)
+{
+	unsigned int speed;										//holder for ADCH value
+	DDRC = 0x00;											//set port c as an input
+  80:	17 b8       	out	0x07, r1	; 7
+	DDRD = 0xFF;											//set port d as an output
+  82:	8f ef       	ldi	r24, 0xFF	; 255
+  84:	8a b9       	out	0x0a, r24	; 10
+	DDRC = 0;												//set PC0 as input for ADC
+  86:	17 b8       	out	0x07, r1	; 7
+	ADCSRA = 0x87;											//ADC enable and ADC prescaler 128
+  88:	87 e8       	ldi	r24, 0x87	; 135
+  8a:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+	ADMUX = 0x60;											//AVcc as reference (5V) and left justified
+  8e:	80 e6       	ldi	r24, 0x60	; 96
+  90:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+	TCCR1A = 0;												//initialize TCCR1A
+  94:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
+	TCCR1B |= (1 << WGM12) | (1 << CS12) | (1 << CS10); 	//mode CTC prescaler 1024
+  98:	e1 e8       	ldi	r30, 0x81	; 129
+  9a:	f0 e0       	ldi	r31, 0x00	; 0
+  9c:	80 81       	ld	r24, Z
+  9e:	8d 60       	ori	r24, 0x0D	; 13
+  a0:	80 83       	st	Z, r24
+	OCR1A = 781;											//100ms second delay
+  a2:	8d e0       	ldi	r24, 0x0D	; 13
+  a4:	93 e0       	ldi	r25, 0x03	; 3
+  a6:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
+  aa:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
+	TCNT1 = 0;												//initialize counter
+  ae:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
+  b2:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
+	{
+		while ((TIFR1 & (1 << OCF1A)) == 0)
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0x03;
+  b6:	73 e0       	ldi	r23, 0x03	; 3
+
+		while ((TIFR1 & (1 << OCF1A))== 0)
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0x42;
+  b8:	62 e4       	ldi	r22, 0x42	; 66
+
+		while ((TIFR1 & (1 << OCF1A))== 0)
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0xC0;
+  ba:	50 ec       	ldi	r21, 0xC0	; 192
+		
+		while ((TIFR1 & (1 << OCF1A))== 0)
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0x81;
+  bc:	41 e8       	ldi	r20, 0x81	; 129
+		TIFR1 |= (1<< OCF1A);		//reset counter flag
+		
+		//rotation finished
+		//get new delay value
+		ADCSRA |= (1<<ADSC);			//start conversion
+  be:	ea e7       	ldi	r30, 0x7A	; 122
+  c0:	f0 e0       	ldi	r31, 0x00	; 0
+		while ((ADCSRA & (1<<ADIF)) == 0)
+		{
+			//wait for conversion to finish
+		}
+		speed = ADCH;					//get ADCH value
+  c2:	c9 e7       	ldi	r28, 0x79	; 121
+  c4:	d0 e0       	ldi	r29, 0x00	; 0
+		OCR1A = 781 + (speed*12);		//update speed 100ms min to 500ms max
+  c6:	a8 e8       	ldi	r26, 0x88	; 136
+  c8:	b0 e0       	ldi	r27, 0x00	; 0
+	TCNT1 = 0;												//initialize counter
+	
+	
+	while (1)
+	{
+		while ((TIFR1 & (1 << OCF1A)) == 0)
+  ca:	b1 9b       	sbis	0x16, 1	; 22
+  cc:	fe cf       	rjmp	.-4      	; 0xca <main+0x4a>
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0x03;
+  ce:	7b b9       	out	0x0b, r23	; 11
+		TIFR1 |= (1<< OCF1A);		//reset counter flag
+  d0:	b1 9a       	sbi	0x16, 1	; 22
+
+		while ((TIFR1 & (1 << OCF1A))== 0)
+  d2:	b1 9b       	sbis	0x16, 1	; 22
+  d4:	fe cf       	rjmp	.-4      	; 0xd2 <main+0x52>
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0x42;
+  d6:	6b b9       	out	0x0b, r22	; 11
+		TIFR1 |= (1<< OCF1A);		//reset counter flag
+  d8:	b1 9a       	sbi	0x16, 1	; 22
+
+		while ((TIFR1 & (1 << OCF1A))== 0)
+  da:	b1 9b       	sbis	0x16, 1	; 22
+  dc:	fe cf       	rjmp	.-4      	; 0xda <main+0x5a>
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0xC0;
+  de:	5b b9       	out	0x0b, r21	; 11
+		TIFR1 |= (1<< OCF1A);		//reset counter flag
+  e0:	b1 9a       	sbi	0x16, 1	; 22
+		
+		while ((TIFR1 & (1 << OCF1A))== 0)
+  e2:	b1 9b       	sbis	0x16, 1	; 22
+  e4:	fe cf       	rjmp	.-4      	; 0xe2 <main+0x62>
+		{
+			//wait for timer overflow
+		}
+		PORTD = 0x81;
+  e6:	4b b9       	out	0x0b, r20	; 11
+		TIFR1 |= (1<< OCF1A);		//reset counter flag
+  e8:	b1 9a       	sbi	0x16, 1	; 22
+		
+		//rotation finished
+		//get new delay value
+		ADCSRA |= (1<<ADSC);			//start conversion
+  ea:	80 81       	ld	r24, Z
+  ec:	80 64       	ori	r24, 0x40	; 64
+  ee:	80 83       	st	Z, r24
+		while ((ADCSRA & (1<<ADIF)) == 0)
+  f0:	80 81       	ld	r24, Z
+  f2:	84 ff       	sbrs	r24, 4
+  f4:	fd cf       	rjmp	.-6      	; 0xf0 <main+0x70>
+		{
+			//wait for conversion to finish
+		}
+		speed = ADCH;					//get ADCH value
+  f6:	88 81       	ld	r24, Y
+		OCR1A = 781 + (speed*12);		//update speed 100ms min to 500ms max
+  f8:	90 e0       	ldi	r25, 0x00	; 0
+  fa:	9c 01       	movw	r18, r24
+  fc:	22 0f       	add	r18, r18
+  fe:	33 1f       	adc	r19, r19
+ 100:	82 0f       	add	r24, r18
+ 102:	93 1f       	adc	r25, r19
+ 104:	88 0f       	add	r24, r24
+ 106:	99 1f       	adc	r25, r25
+ 108:	88 0f       	add	r24, r24
+ 10a:	99 1f       	adc	r25, r25
+ 10c:	83 5f       	subi	r24, 0xF3	; 243
+ 10e:	9c 4f       	sbci	r25, 0xFC	; 252
+ 110:	11 96       	adiw	r26, 0x01	; 1
+ 112:	9c 93       	st	X, r25
+ 114:	8e 93       	st	-X, r24
+		
+
+		
+	}
+ 116:	d9 cf       	rjmp	.-78     	; 0xca <main+0x4a>
+
+00000118 <_exit>:
+ 118:	f8 94       	cli
+
+0000011a <__stop_program>:
+ 11a:	ff cf       	rjmp	.-2      	; 0x11a <__stop_program>

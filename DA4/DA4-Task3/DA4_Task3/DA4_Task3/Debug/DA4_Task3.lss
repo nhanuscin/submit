@@ -1,0 +1,177 @@
+
+DA4_Task3.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000014e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000000fa  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  0000014e  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000180  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  000001bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000719  00000000  00000000  000001dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000676  00000000  00000000  000008f5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000273  00000000  00000000  00000f6b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  000011e0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000039d  00000000  00000000  00001204  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000018  00000000  00000000  000015a1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  000015b9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 40 00 	call	0x80	; 0x80 <main>
+  78:	0c 94 7b 00 	jmp	0xf6	; 0xf6 <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <main>:
+#define F_CPU 8000000UL
+#include <util/delay.h>
+
+int main(void)
+{
+	DDRC = 0;												//set PC0 as input for ADC
+  80:	17 b8       	out	0x07, r1	; 7
+	ADCSRA = 0x87;											//ADC enable and ADC pre-scaler 128
+  82:	87 e8       	ldi	r24, 0x87	; 135
+  84:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+	ADMUX = 0x60;											//AVcc as reference (5V) and left justified
+  88:	80 e6       	ldi	r24, 0x60	; 96
+  8a:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+	TCCR1A |= (1<<COM1A1) | (1<<COM1B1)| (1<<WGM11);		//clear OC1A and OC1B on compare match
+  8e:	e0 e8       	ldi	r30, 0x80	; 128
+  90:	f0 e0       	ldi	r31, 0x00	; 0
+  92:	80 81       	ld	r24, Z
+  94:	82 6a       	ori	r24, 0xA2	; 162
+  96:	80 83       	st	Z, r24
+	TCCR1B |= (1<<WGM13)| (1<<WGM12)| (1<<CS11)|(1<<CS10);	//pre-scaler 64, fast PWM with ICR1 as top value
+  98:	e1 e8       	ldi	r30, 0x81	; 129
+  9a:	f0 e0       	ldi	r31, 0x00	; 0
+  9c:	80 81       	ld	r24, Z
+  9e:	8b 61       	ori	r24, 0x1B	; 27
+  a0:	80 83       	st	Z, r24
+	ICR1 = 2500;											//fPWM = 50Hz, period 20ms
+  a2:	84 ec       	ldi	r24, 0xC4	; 196
+  a4:	99 e0       	ldi	r25, 0x09	; 9
+  a6:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
+  aa:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+	DDRB= 0xFF;												//PortB as output
+  ae:	8f ef       	ldi	r24, 0xFF	; 255
+  b0:	84 b9       	out	0x04, r24	; 4
+	unsigned int angle;
+	while (1)
+	{
+		ADCSRA |= (1<<ADSC);								//start conversion
+  b2:	ea e7       	ldi	r30, 0x7A	; 122
+  b4:	f0 e0       	ldi	r31, 0x00	; 0
+		while ((ADCSRA & (1<<ADIF)) == 0)
+		{
+			//wait for conversion to finish
+		}
+		ADCSRA |= (1<<ADIF);								//reset flag bit
+		angle = ADCH;										//store ADC value into variable
+  b6:	c9 e7       	ldi	r28, 0x79	; 121
+  b8:	d0 e0       	ldi	r29, 0x00	; 0
+		OCR1A = (angle/2)+125;								//convert ADC value to PWM value
+  ba:	a8 e8       	ldi	r26, 0x88	; 136
+  bc:	b0 e0       	ldi	r27, 0x00	; 0
+	ICR1 = 2500;											//fPWM = 50Hz, period 20ms
+	DDRB= 0xFF;												//PortB as output
+	unsigned int angle;
+	while (1)
+	{
+		ADCSRA |= (1<<ADSC);								//start conversion
+  be:	80 81       	ld	r24, Z
+  c0:	80 64       	ori	r24, 0x40	; 64
+  c2:	80 83       	st	Z, r24
+		while ((ADCSRA & (1<<ADIF)) == 0)
+  c4:	80 81       	ld	r24, Z
+  c6:	84 ff       	sbrs	r24, 4
+  c8:	fd cf       	rjmp	.-6      	; 0xc4 <main+0x44>
+		{
+			//wait for conversion to finish
+		}
+		ADCSRA |= (1<<ADIF);								//reset flag bit
+  ca:	80 81       	ld	r24, Z
+  cc:	80 61       	ori	r24, 0x10	; 16
+  ce:	80 83       	st	Z, r24
+		angle = ADCH;										//store ADC value into variable
+  d0:	88 81       	ld	r24, Y
+		OCR1A = (angle/2)+125;								//convert ADC value to PWM value
+  d2:	90 e0       	ldi	r25, 0x00	; 0
+  d4:	96 95       	lsr	r25
+  d6:	87 95       	ror	r24
+  d8:	83 58       	subi	r24, 0x83	; 131
+  da:	9f 4f       	sbci	r25, 0xFF	; 255
+  dc:	11 96       	adiw	r26, 0x01	; 1
+  de:	9c 93       	st	X, r25
+  e0:	8e 93       	st	-X, r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e2:	2f ef       	ldi	r18, 0xFF	; 255
+  e4:	8e e9       	ldi	r24, 0x9E	; 158
+  e6:	94 e2       	ldi	r25, 0x24	; 36
+  e8:	21 50       	subi	r18, 0x01	; 1
+  ea:	80 40       	sbci	r24, 0x00	; 0
+  ec:	90 40       	sbci	r25, 0x00	; 0
+  ee:	e1 f7       	brne	.-8      	; 0xe8 <main+0x68>
+  f0:	00 c0       	rjmp	.+0      	; 0xf2 <main+0x72>
+  f2:	00 00       	nop
+  f4:	e4 cf       	rjmp	.-56     	; 0xbe <main+0x3e>
+
+000000f6 <_exit>:
+  f6:	f8 94       	cli
+
+000000f8 <__stop_program>:
+  f8:	ff cf       	rjmp	.-2      	; 0xf8 <__stop_program>
