@@ -1,0 +1,618 @@
+
+DA_Final_Project.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         000000da  00800100  00000348  000003bc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000348  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000496  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004c8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000058  00000000  00000000  00000504  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000d10  00000000  00000000  0000055c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000759  00000000  00000000  0000126c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000004e1  00000000  00000000  000019c5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000d4  00000000  00000000  00001ea8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000440  00000000  00000000  00001f7c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000629  00000000  00000000  000023bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000048  00000000  00000000  000029e5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e8 e4       	ldi	r30, 0x48	; 72
+  7c:	f3 e0       	ldi	r31, 0x03	; 3
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	aa 3d       	cpi	r26, 0xDA	; 218
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+  8a:	0e 94 16 01 	call	0x22c	; 0x22c <main>
+  8e:	0c 94 a2 01 	jmp	0x344	; 0x344 <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <USART_init>:
+
+#define UBRR_9600 51 // for 8Mhz with .2% error
+
+void USART_init( unsigned int ubrr )
+{
+	UBRR0H = (unsigned char)(ubrr>>8);			//set baud rate
+  96:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+	UBRR0L = (unsigned char)ubrr;
+  9a:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+	UCSR0B = (1 << TXEN0) | (1 <<RXEN0); 		// Enable receiver, transmitter
+  9e:	88 e1       	ldi	r24, 0x18	; 24
+  a0:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+	UCSR0C = (1 << UCSZ00) | (1 << UCSZ01); 	//asynchronous 8-bit data 1 stop bit
+  a4:	86 e0       	ldi	r24, 0x06	; 6
+  a6:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
+  aa:	08 95       	ret
+
+000000ac <USART_tx_string>:
+}
+
+void USART_tx_string( char *data )
+{
+  ac:	cf 93       	push	r28
+  ae:	df 93       	push	r29
+	while ((*data != '\0'))
+  b0:	fc 01       	movw	r30, r24
+  b2:	20 81       	ld	r18, Z
+  b4:	22 23       	and	r18, r18
+  b6:	b1 f0       	breq	.+44     	; 0xe4 <USART_tx_string+0x38>
+  b8:	dc 01       	movw	r26, r24
+  ba:	11 96       	adiw	r26, 0x01	; 1
+	{
+		while (!(UCSR0A & (1 <<UDRE0)));	//wait for the transmit buffer to empty
+  bc:	e0 ec       	ldi	r30, 0xC0	; 192
+  be:	f0 e0       	ldi	r31, 0x00	; 0
+		UDR0 = *data;						//put the data into the empty buffer, which sends the data
+  c0:	c6 ec       	ldi	r28, 0xC6	; 198
+  c2:	d0 e0       	ldi	r29, 0x00	; 0
+
+void USART_tx_string( char *data )
+{
+	while ((*data != '\0'))
+	{
+		while (!(UCSR0A & (1 <<UDRE0)));	//wait for the transmit buffer to empty
+  c4:	90 81       	ld	r25, Z
+  c6:	95 ff       	sbrs	r25, 5
+  c8:	fd cf       	rjmp	.-6      	; 0xc4 <USART_tx_string+0x18>
+		UDR0 = *data;						//put the data into the empty buffer, which sends the data
+  ca:	28 83       	st	Y, r18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  cc:	2f e7       	ldi	r18, 0x7F	; 127
+  ce:	88 e3       	ldi	r24, 0x38	; 56
+  d0:	91 e0       	ldi	r25, 0x01	; 1
+  d2:	21 50       	subi	r18, 0x01	; 1
+  d4:	80 40       	sbci	r24, 0x00	; 0
+  d6:	90 40       	sbci	r25, 0x00	; 0
+  d8:	e1 f7       	brne	.-8      	; 0xd2 <USART_tx_string+0x26>
+  da:	00 c0       	rjmp	.+0      	; 0xdc <USART_tx_string+0x30>
+  dc:	00 00       	nop
+	UCSR0C = (1 << UCSZ00) | (1 << UCSZ01); 	//asynchronous 8-bit data 1 stop bit
+}
+
+void USART_tx_string( char *data )
+{
+	while ((*data != '\0'))
+  de:	2d 91       	ld	r18, X+
+  e0:	21 11       	cpse	r18, r1
+  e2:	f0 cf       	rjmp	.-32     	; 0xc4 <USART_tx_string+0x18>
+		while (!(UCSR0A & (1 <<UDRE0)));	//wait for the transmit buffer to empty
+		UDR0 = *data;						//put the data into the empty buffer, which sends the data
+		_delay_ms(50); 					// wait a bit
+		data++;
+	}
+}
+  e4:	df 91       	pop	r29
+  e6:	cf 91       	pop	r28
+  e8:	08 95       	ret
+
+000000ea <USART_Transmit>:
+
+void USART_Transmit( unsigned char data )
+{
+	
+	while ( !( UCSR0A & (1<<UDRE0)) )
+  ea:	e0 ec       	ldi	r30, 0xC0	; 192
+  ec:	f0 e0       	ldi	r31, 0x00	; 0
+  ee:	90 81       	ld	r25, Z
+  f0:	95 ff       	sbrs	r25, 5
+  f2:	fd cf       	rjmp	.-6      	; 0xee <USART_Transmit+0x4>
+	{
+		/* Wait for empty transmit buffer */
+	}
+	/* Put data into buffer, sends the data */
+	UDR0 = data;
+  f4:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+  f8:	08 95       	ret
+
+000000fa <USART_Receive>:
+}
+
+unsigned char USART_Receive( void )
+{
+
+	while ( !(UCSR0A & (1<<RXC0)) )
+  fa:	e0 ec       	ldi	r30, 0xC0	; 192
+  fc:	f0 e0       	ldi	r31, 0x00	; 0
+  fe:	80 81       	ld	r24, Z
+ 100:	88 23       	and	r24, r24
+ 102:	ec f7       	brge	.-6      	; 0xfe <USART_Receive+0x4>
+	{
+		/* Wait for data to be received */
+	}
+
+	/* Get and return received data from buffer */
+	return UDR0;
+ 104:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+}
+ 108:	08 95       	ret
+
+0000010a <get_number>:
+
+unsigned int get_number(int ones, int tens)
+{
+ 10a:	1f 93       	push	r17
+ 10c:	cf 93       	push	r28
+ 10e:	df 93       	push	r29
+	unsigned char data;
+	data = USART_Receive();					//get the tens digits
+ 110:	0e 94 7d 00 	call	0xfa	; 0xfa <USART_Receive>
+ 114:	c8 2f       	mov	r28, r24
+	USART_Transmit(data);					//transmit it back
+ 116:	0e 94 75 00 	call	0xea	; 0xea <USART_Transmit>
+	tens = data - 0x30;						//convert to a digit	
+ 11a:	d0 e0       	ldi	r29, 0x00	; 0
+ 11c:	e0 97       	sbiw	r28, 0x30	; 48
+	tens = tens *10;						//convert to tens place
+	data = USART_Receive();					//get ones digit
+ 11e:	0e 94 7d 00 	call	0xfa	; 0xfa <USART_Receive>
+ 122:	18 2f       	mov	r17, r24
+	USART_Transmit(data);					//transmit it back
+ 124:	0e 94 75 00 	call	0xea	; 0xea <USART_Transmit>
+	ones = data - 0x30;						//convert to ones place
+	return tens + ones;						//return position
+ 128:	ce 01       	movw	r24, r28
+ 12a:	88 0f       	add	r24, r24
+ 12c:	99 1f       	adc	r25, r25
+ 12e:	cc 0f       	add	r28, r28
+ 130:	dd 1f       	adc	r29, r29
+ 132:	cc 0f       	add	r28, r28
+ 134:	dd 1f       	adc	r29, r29
+ 136:	cc 0f       	add	r28, r28
+ 138:	dd 1f       	adc	r29, r29
+ 13a:	c8 0f       	add	r28, r24
+ 13c:	d9 1f       	adc	r29, r25
+ 13e:	81 2f       	mov	r24, r17
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	c0 97       	sbiw	r24, 0x30	; 48
+}
+ 144:	8c 0f       	add	r24, r28
+ 146:	9d 1f       	adc	r25, r29
+ 148:	df 91       	pop	r29
+ 14a:	cf 91       	pop	r28
+ 14c:	1f 91       	pop	r17
+ 14e:	08 95       	ret
+
+00000150 <go_foward>:
+//this function takes in the number to iterations to move the object forward to the desired position
+void go_foward(int iter)
+{
+	int i;
+		for (i=0;i<iter;i++)
+ 150:	18 16       	cp	r1, r24
+ 152:	19 06       	cpc	r1, r25
+ 154:	9c f5       	brge	.+102    	; 0x1bc <go_foward+0x6c>
+ 156:	20 e0       	ldi	r18, 0x00	; 0
+ 158:	30 e0       	ldi	r19, 0x00	; 0
+		{
+			PORTB = 0x09;
+ 15a:	79 e0       	ldi	r23, 0x09	; 9
+			_delay_ms(75);
+			PORTB = 0x0C;
+ 15c:	6c e0       	ldi	r22, 0x0C	; 12
+			_delay_ms(75);
+			PORTB = 0x06;
+ 15e:	56 e0       	ldi	r21, 0x06	; 6
+			_delay_ms(75);
+			PORTB = 0x03;
+ 160:	43 e0       	ldi	r20, 0x03	; 3
+void go_foward(int iter)
+{
+	int i;
+		for (i=0;i<iter;i++)
+		{
+			PORTB = 0x09;
+ 162:	75 b9       	out	0x05, r23	; 5
+ 164:	af eb       	ldi	r26, 0xBF	; 191
+ 166:	e4 ed       	ldi	r30, 0xD4	; 212
+ 168:	f1 e0       	ldi	r31, 0x01	; 1
+ 16a:	a1 50       	subi	r26, 0x01	; 1
+ 16c:	e0 40       	sbci	r30, 0x00	; 0
+ 16e:	f0 40       	sbci	r31, 0x00	; 0
+ 170:	e1 f7       	brne	.-8      	; 0x16a <go_foward+0x1a>
+ 172:	00 c0       	rjmp	.+0      	; 0x174 <go_foward+0x24>
+ 174:	00 00       	nop
+			_delay_ms(75);
+			PORTB = 0x0C;
+ 176:	65 b9       	out	0x05, r22	; 5
+ 178:	af eb       	ldi	r26, 0xBF	; 191
+ 17a:	e4 ed       	ldi	r30, 0xD4	; 212
+ 17c:	f1 e0       	ldi	r31, 0x01	; 1
+ 17e:	a1 50       	subi	r26, 0x01	; 1
+ 180:	e0 40       	sbci	r30, 0x00	; 0
+ 182:	f0 40       	sbci	r31, 0x00	; 0
+ 184:	e1 f7       	brne	.-8      	; 0x17e <go_foward+0x2e>
+ 186:	00 c0       	rjmp	.+0      	; 0x188 <go_foward+0x38>
+ 188:	00 00       	nop
+			_delay_ms(75);
+			PORTB = 0x06;
+ 18a:	55 b9       	out	0x05, r21	; 5
+ 18c:	af eb       	ldi	r26, 0xBF	; 191
+ 18e:	e4 ed       	ldi	r30, 0xD4	; 212
+ 190:	f1 e0       	ldi	r31, 0x01	; 1
+ 192:	a1 50       	subi	r26, 0x01	; 1
+ 194:	e0 40       	sbci	r30, 0x00	; 0
+ 196:	f0 40       	sbci	r31, 0x00	; 0
+ 198:	e1 f7       	brne	.-8      	; 0x192 <go_foward+0x42>
+ 19a:	00 c0       	rjmp	.+0      	; 0x19c <go_foward+0x4c>
+ 19c:	00 00       	nop
+			_delay_ms(75);
+			PORTB = 0x03;
+ 19e:	45 b9       	out	0x05, r20	; 5
+ 1a0:	af eb       	ldi	r26, 0xBF	; 191
+ 1a2:	e4 ed       	ldi	r30, 0xD4	; 212
+ 1a4:	f1 e0       	ldi	r31, 0x01	; 1
+ 1a6:	a1 50       	subi	r26, 0x01	; 1
+ 1a8:	e0 40       	sbci	r30, 0x00	; 0
+ 1aa:	f0 40       	sbci	r31, 0x00	; 0
+ 1ac:	e1 f7       	brne	.-8      	; 0x1a6 <go_foward+0x56>
+ 1ae:	00 c0       	rjmp	.+0      	; 0x1b0 <go_foward+0x60>
+ 1b0:	00 00       	nop
+}
+//this function takes in the number to iterations to move the object forward to the desired position
+void go_foward(int iter)
+{
+	int i;
+		for (i=0;i<iter;i++)
+ 1b2:	2f 5f       	subi	r18, 0xFF	; 255
+ 1b4:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1b6:	82 17       	cp	r24, r18
+ 1b8:	93 07       	cpc	r25, r19
+ 1ba:	99 f6       	brne	.-90     	; 0x162 <go_foward+0x12>
+ 1bc:	08 95       	ret
+
+000001be <go_back>:
+}
+//this function takes in the number of iterations to move the object back to the starting position
+void go_back(int iter)
+{
+	int i;
+	for (i=0;i<iter;i++)
+ 1be:	18 16       	cp	r1, r24
+ 1c0:	19 06       	cpc	r1, r25
+ 1c2:	9c f5       	brge	.+102    	; 0x22a <go_back+0x6c>
+ 1c4:	20 e0       	ldi	r18, 0x00	; 0
+ 1c6:	30 e0       	ldi	r19, 0x00	; 0
+	{
+		PORTB = 0x03;
+ 1c8:	73 e0       	ldi	r23, 0x03	; 3
+		_delay_ms(75);
+		PORTB = 0x06;
+ 1ca:	66 e0       	ldi	r22, 0x06	; 6
+		_delay_ms(75);
+		PORTB = 0x0C;
+ 1cc:	5c e0       	ldi	r21, 0x0C	; 12
+		_delay_ms(75);
+		PORTB = 0x09;
+ 1ce:	49 e0       	ldi	r20, 0x09	; 9
+void go_back(int iter)
+{
+	int i;
+	for (i=0;i<iter;i++)
+	{
+		PORTB = 0x03;
+ 1d0:	75 b9       	out	0x05, r23	; 5
+ 1d2:	af eb       	ldi	r26, 0xBF	; 191
+ 1d4:	e4 ed       	ldi	r30, 0xD4	; 212
+ 1d6:	f1 e0       	ldi	r31, 0x01	; 1
+ 1d8:	a1 50       	subi	r26, 0x01	; 1
+ 1da:	e0 40       	sbci	r30, 0x00	; 0
+ 1dc:	f0 40       	sbci	r31, 0x00	; 0
+ 1de:	e1 f7       	brne	.-8      	; 0x1d8 <go_back+0x1a>
+ 1e0:	00 c0       	rjmp	.+0      	; 0x1e2 <go_back+0x24>
+ 1e2:	00 00       	nop
+		_delay_ms(75);
+		PORTB = 0x06;
+ 1e4:	65 b9       	out	0x05, r22	; 5
+ 1e6:	af eb       	ldi	r26, 0xBF	; 191
+ 1e8:	e4 ed       	ldi	r30, 0xD4	; 212
+ 1ea:	f1 e0       	ldi	r31, 0x01	; 1
+ 1ec:	a1 50       	subi	r26, 0x01	; 1
+ 1ee:	e0 40       	sbci	r30, 0x00	; 0
+ 1f0:	f0 40       	sbci	r31, 0x00	; 0
+ 1f2:	e1 f7       	brne	.-8      	; 0x1ec <go_back+0x2e>
+ 1f4:	00 c0       	rjmp	.+0      	; 0x1f6 <go_back+0x38>
+ 1f6:	00 00       	nop
+		_delay_ms(75);
+		PORTB = 0x0C;
+ 1f8:	55 b9       	out	0x05, r21	; 5
+ 1fa:	af eb       	ldi	r26, 0xBF	; 191
+ 1fc:	e4 ed       	ldi	r30, 0xD4	; 212
+ 1fe:	f1 e0       	ldi	r31, 0x01	; 1
+ 200:	a1 50       	subi	r26, 0x01	; 1
+ 202:	e0 40       	sbci	r30, 0x00	; 0
+ 204:	f0 40       	sbci	r31, 0x00	; 0
+ 206:	e1 f7       	brne	.-8      	; 0x200 <go_back+0x42>
+ 208:	00 c0       	rjmp	.+0      	; 0x20a <go_back+0x4c>
+ 20a:	00 00       	nop
+		_delay_ms(75);
+		PORTB = 0x09;
+ 20c:	45 b9       	out	0x05, r20	; 5
+ 20e:	af eb       	ldi	r26, 0xBF	; 191
+ 210:	e4 ed       	ldi	r30, 0xD4	; 212
+ 212:	f1 e0       	ldi	r31, 0x01	; 1
+ 214:	a1 50       	subi	r26, 0x01	; 1
+ 216:	e0 40       	sbci	r30, 0x00	; 0
+ 218:	f0 40       	sbci	r31, 0x00	; 0
+ 21a:	e1 f7       	brne	.-8      	; 0x214 <go_back+0x56>
+ 21c:	00 c0       	rjmp	.+0      	; 0x21e <go_back+0x60>
+ 21e:	00 00       	nop
+}
+//this function takes in the number of iterations to move the object back to the starting position
+void go_back(int iter)
+{
+	int i;
+	for (i=0;i<iter;i++)
+ 220:	2f 5f       	subi	r18, 0xFF	; 255
+ 222:	3f 4f       	sbci	r19, 0xFF	; 255
+ 224:	82 17       	cp	r24, r18
+ 226:	93 07       	cpc	r25, r19
+ 228:	99 f6       	brne	.-90     	; 0x1d0 <go_back+0x12>
+ 22a:	08 95       	ret
+
+0000022c <main>:
+	}
+	
+}
+
+int main(void)
+{	int ones_place, tens_place;
+ 22c:	cf 92       	push	r12
+ 22e:	df 92       	push	r13
+ 230:	ef 92       	push	r14
+ 232:	ff 92       	push	r15
+ 234:	0f 93       	push	r16
+ 236:	1f 93       	push	r17
+ 238:	cf 93       	push	r28
+	unsigned int pos1, pos2, pos3;
+	int iterations;
+	unsigned char digit;
+	USART_init(UBRR_9600); 								//Initialize the USART (RS232 interface)
+ 23a:	83 e3       	ldi	r24, 0x33	; 51
+ 23c:	90 e0       	ldi	r25, 0x00	; 0
+ 23e:	0e 94 4b 00 	call	0x96	; 0x96 <USART_init>
+	
+	USART_tx_string("Please enter 3 positions in centimeters with one space between each position\r\n"); 		
+ 242:	80 e0       	ldi	r24, 0x00	; 0
+ 244:	91 e0       	ldi	r25, 0x01	; 1
+ 246:	0e 94 56 00 	call	0xac	; 0xac <USART_tx_string>
+	USART_tx_string("For single digit positions please put a zero in the tens place... \r\n");
+ 24a:	8f e4       	ldi	r24, 0x4F	; 79
+ 24c:	91 e0       	ldi	r25, 0x01	; 1
+ 24e:	0e 94 56 00 	call	0xac	; 0xac <USART_tx_string>
+	USART_tx_string("I.E. for 9 cm put 09\r\n");
+ 252:	84 e9       	ldi	r24, 0x94	; 148
+ 254:	91 e0       	ldi	r25, 0x01	; 1
+ 256:	0e 94 56 00 	call	0xac	; 0xac <USART_tx_string>
+	USART_tx_string("Example input: 01 10 25\r\n");
+ 25a:	8b ea       	ldi	r24, 0xAB	; 171
+ 25c:	91 e0       	ldi	r25, 0x01	; 1
+ 25e:	0e 94 56 00 	call	0xac	; 0xac <USART_tx_string>
+	USART_tx_string("Max value is 35cm\r\n");
+ 262:	85 ec       	ldi	r24, 0xC5	; 197
+ 264:	91 e0       	ldi	r25, 0x01	; 1
+ 266:	0e 94 56 00 	call	0xac	; 0xac <USART_tx_string>
+	
+	DDRB = 0xFF;								//set port B as an output
+ 26a:	8f ef       	ldi	r24, 0xFF	; 255
+ 26c:	84 b9       	out	0x04, r24	; 4
+	ones_place = tens_place = 0;
+	
+	pos1 = get_number(ones_place, tens_place);
+ 26e:	60 e0       	ldi	r22, 0x00	; 0
+ 270:	70 e0       	ldi	r23, 0x00	; 0
+ 272:	80 e0       	ldi	r24, 0x00	; 0
+ 274:	90 e0       	ldi	r25, 0x00	; 0
+ 276:	0e 94 85 00 	call	0x10a	; 0x10a <get_number>
+ 27a:	6c 01       	movw	r12, r24
+	
+	digit = USART_Receive();					//get space
+ 27c:	0e 94 7d 00 	call	0xfa	; 0xfa <USART_Receive>
+	USART_Transmit(digit);
+ 280:	0e 94 75 00 	call	0xea	; 0xea <USART_Transmit>
+	
+	ones_place = tens_place = 0;
+	pos2 = get_number(ones_place, tens_place);
+ 284:	60 e0       	ldi	r22, 0x00	; 0
+ 286:	70 e0       	ldi	r23, 0x00	; 0
+ 288:	80 e0       	ldi	r24, 0x00	; 0
+ 28a:	90 e0       	ldi	r25, 0x00	; 0
+ 28c:	0e 94 85 00 	call	0x10a	; 0x10a <get_number>
+ 290:	7c 01       	movw	r14, r24
+	
+	digit = USART_Receive();					//get space
+ 292:	0e 94 7d 00 	call	0xfa	; 0xfa <USART_Receive>
+	USART_Transmit(digit);
+ 296:	0e 94 75 00 	call	0xea	; 0xea <USART_Transmit>
+	
+	ones_place = tens_place = 0;
+	pos3 = get_number(ones_place, tens_place);
+ 29a:	60 e0       	ldi	r22, 0x00	; 0
+ 29c:	70 e0       	ldi	r23, 0x00	; 0
+ 29e:	80 e0       	ldi	r24, 0x00	; 0
+ 2a0:	90 e0       	ldi	r25, 0x00	; 0
+ 2a2:	0e 94 85 00 	call	0x10a	; 0x10a <get_number>
+ 2a6:	8c 01       	movw	r16, r24
+ 2a8:	84 97       	sbiw	r24, 0x24	; 36
+ 2aa:	10 f0       	brcs	.+4      	; 0x2b0 <main+0x84>
+ 2ac:	03 e2       	ldi	r16, 0x23	; 35
+ 2ae:	10 e0       	ldi	r17, 0x00	; 0
+	
+	if (pos3 > 35)
+		pos3 = 35;							//if position 3 is out of range change it to max value
+	
+	iterations = pos1 * 80;					//80 iterations = 1cm, so multiply position value by 80
+	go_foward(iterations);					//move object to position 1
+ 2b0:	c0 e5       	ldi	r28, 0x50	; 80
+ 2b2:	cc 9d       	mul	r28, r12
+ 2b4:	c0 01       	movw	r24, r0
+ 2b6:	cd 9d       	mul	r28, r13
+ 2b8:	90 0d       	add	r25, r0
+ 2ba:	11 24       	eor	r1, r1
+ 2bc:	0e 94 a8 00 	call	0x150	; 0x150 <go_foward>
+ 2c0:	2f ef       	ldi	r18, 0xFF	; 255
+ 2c2:	31 e1       	ldi	r19, 0x11	; 17
+ 2c4:	8a e7       	ldi	r24, 0x7A	; 122
+ 2c6:	21 50       	subi	r18, 0x01	; 1
+ 2c8:	30 40       	sbci	r19, 0x00	; 0
+ 2ca:	80 40       	sbci	r24, 0x00	; 0
+ 2cc:	e1 f7       	brne	.-8      	; 0x2c6 <main+0x9a>
+ 2ce:	00 c0       	rjmp	.+0      	; 0x2d0 <main+0xa4>
+ 2d0:	00 00       	nop
+	_delay_ms(5000);						//wait a bit
+	
+	iterations = (pos2 - pos1) * 80;		//get difference first two positions then multiply by 80
+	go_foward(iterations);					//move object to position 2
+ 2d2:	c7 01       	movw	r24, r14
+ 2d4:	8c 19       	sub	r24, r12
+ 2d6:	9d 09       	sbc	r25, r13
+ 2d8:	9c 01       	movw	r18, r24
+ 2da:	c2 9f       	mul	r28, r18
+ 2dc:	c0 01       	movw	r24, r0
+ 2de:	c3 9f       	mul	r28, r19
+ 2e0:	90 0d       	add	r25, r0
+ 2e2:	11 24       	eor	r1, r1
+ 2e4:	0e 94 a8 00 	call	0x150	; 0x150 <go_foward>
+ 2e8:	3f ef       	ldi	r19, 0xFF	; 255
+ 2ea:	81 e1       	ldi	r24, 0x11	; 17
+ 2ec:	9a e7       	ldi	r25, 0x7A	; 122
+ 2ee:	31 50       	subi	r19, 0x01	; 1
+ 2f0:	80 40       	sbci	r24, 0x00	; 0
+ 2f2:	90 40       	sbci	r25, 0x00	; 0
+ 2f4:	e1 f7       	brne	.-8      	; 0x2ee <main+0xc2>
+ 2f6:	00 c0       	rjmp	.+0      	; 0x2f8 <main+0xcc>
+ 2f8:	00 00       	nop
+	_delay_ms(5000);						//wait a bit
+	
+	iterations = (pos3 - pos2) * 80;		//get difference second and third position then multiply by 80
+	go_foward(iterations);					//move object to final position
+ 2fa:	c8 01       	movw	r24, r16
+ 2fc:	8e 19       	sub	r24, r14
+ 2fe:	9f 09       	sbc	r25, r15
+ 300:	9c 01       	movw	r18, r24
+ 302:	c2 9f       	mul	r28, r18
+ 304:	c0 01       	movw	r24, r0
+ 306:	c3 9f       	mul	r28, r19
+ 308:	90 0d       	add	r25, r0
+ 30a:	11 24       	eor	r1, r1
+ 30c:	0e 94 a8 00 	call	0x150	; 0x150 <go_foward>
+ 310:	3f ef       	ldi	r19, 0xFF	; 255
+ 312:	81 e1       	ldi	r24, 0x11	; 17
+ 314:	9a e7       	ldi	r25, 0x7A	; 122
+ 316:	31 50       	subi	r19, 0x01	; 1
+ 318:	80 40       	sbci	r24, 0x00	; 0
+ 31a:	90 40       	sbci	r25, 0x00	; 0
+ 31c:	e1 f7       	brne	.-8      	; 0x316 <main+0xea>
+ 31e:	00 c0       	rjmp	.+0      	; 0x320 <main+0xf4>
+ 320:	00 00       	nop
+	_delay_ms(5000);						//wait a bit
+	
+	iterations = pos3 * 80;					//get total iterations made 
+	go_back(iterations);					//to return to starting position
+ 322:	c0 9f       	mul	r28, r16
+ 324:	c0 01       	movw	r24, r0
+ 326:	c1 9f       	mul	r28, r17
+ 328:	90 0d       	add	r25, r0
+ 32a:	11 24       	eor	r1, r1
+ 32c:	0e 94 df 00 	call	0x1be	; 0x1be <go_back>
+
+	return 0;
+}
+ 330:	80 e0       	ldi	r24, 0x00	; 0
+ 332:	90 e0       	ldi	r25, 0x00	; 0
+ 334:	cf 91       	pop	r28
+ 336:	1f 91       	pop	r17
+ 338:	0f 91       	pop	r16
+ 33a:	ff 90       	pop	r15
+ 33c:	ef 90       	pop	r14
+ 33e:	df 90       	pop	r13
+ 340:	cf 90       	pop	r12
+ 342:	08 95       	ret
+
+00000344 <_exit>:
+ 344:	f8 94       	cli
+
+00000346 <__stop_program>:
+ 346:	ff cf       	rjmp	.-2      	; 0x346 <__stop_program>
